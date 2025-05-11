@@ -1,6 +1,12 @@
+[![Kotlin Version](https://img.shields.io/badge/language-Kotlin-orange?logo=kotlin)](https://github.com/DoggyDoggyDoggy/GildedRose-Refactoring-Kata)
+
 _Support this and all my katas via [Patreon](https://www.patreon.com/EmilyBache)_
 
 # Gilded Rose Refactoring Kata
+
+> 🚀 **Kotlin Edition:**  
+> This fork has been fully refactored into idiomatic Kotlin.  
+> See the [`/kotlin`](./kotlin) directory for all the code and tests.
 
 You can find out more about this exercise in my YouTube video [Why Developers LOVE The Gilded Rose Kata](https://youtu.be/Mt4XpGxigT4). I also have a video of a worked solution in Java - [Gilded Rose Kata, Hands-on](https://youtu.be/OdnV8hc9L7I)
 
