@@ -54,4 +54,4 @@ in another language or a new starting point for your favorite programming
 language. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
 
 # Kotlin Refactored
-## By DoggyDoggyDoggy
+By DoggyDoggyDoggy
