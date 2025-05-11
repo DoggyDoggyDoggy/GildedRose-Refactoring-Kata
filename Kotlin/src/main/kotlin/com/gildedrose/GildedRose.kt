@@ -6,53 +6,60 @@ class GildedRose(var items: List<Item>) {
 
     fun updateQuality() {
         for (i in items.indices) {
-            if (
-                items[i].name != "Aged Brie" &&
-                items[i].name != "Backstage passes to a TAFKAL80ETC concert" &&
-                items[i].name != "Sulfuras, Hand of Ragnaros"
-            ) {
-                downGradeQuality(i)
-            } else {
-                upgradeQuality(i)
+            when (items[i].name) {
+                "Backstage passes to a TAFKAL80ETC concert" -> {
+                    updateBackstagePassesQuality(i)
+                }
 
-                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
-                    when {
-                        items[i].sellIn < 6 -> {
-                            upgradeQuality(i)
-                            upgradeQuality(i)
-                        }
+                "Aged Brie" -> {
+                    updateAgedBrieQuality(i)
+                }
 
-                        items[i].sellIn < 11 -> {
-                            upgradeQuality(i)
-                        }
-                    }
+                "Sulfuras, Hand of Ragnaros" -> {
+                    updateSulfurasQuality(i)
+                }
+
+                else -> {
+                    downGradeQuality(i)
+                    if (items[i].sellIn < 1) downGradeQuality(i)
                 }
             }
 
-            sellItem(i)
+            if (items[i].name != "Sulfuras, Hand of Ragnaros") sellItem(i)
+        }
+    }
 
-            if (items[i].sellIn < 0) {
-                when (items[i].name) {
-                    "Aged Brie" -> {
-                        upgradeQuality(i)
-                    }
+    private fun updateBackstagePassesQuality(i: Int) {
+        upgradeQuality(i)
+        when {
+            items[i].sellIn < 1 -> {
+                items[i].quality -= items[i].quality
+            }
 
-                    "Backstage passes to a TAFKAL80ETC concert" -> {
-                        items[i].quality -= items[i].quality
-                    }
+            items[i].sellIn < 6 -> {
+                upgradeQuality(i)
+                upgradeQuality(i)
+            }
 
-                    else -> {
-                        if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                            downGradeQuality(i)
-                        }
-                    }
-                }
+            items[i].sellIn < 11 -> {
+                upgradeQuality(i)
             }
         }
     }
 
+    private fun updateAgedBrieQuality(i: Int) {
+        upgradeQuality(i)
+        if (items[i].sellIn < 1) {
+            upgradeQuality(i)
+        }
+    }
+
+    private fun updateSulfurasQuality(i: Int) {
+        upgradeQuality(i)
+    }
+
     private fun sellItem(i: Int) {
-        if (items[i].name != "Sulfuras, Hand of Ragnaros") items[i].sellIn -= 1
+        items[i].sellIn -= 1
     }
 
     private fun downGradeQuality(i: Int) {
@@ -61,7 +68,6 @@ class GildedRose(var items: List<Item>) {
 
     private fun upgradeQuality(i: Int) {
         if (items[i].quality < 50) items[i].quality += 1
-
     }
 }
 
